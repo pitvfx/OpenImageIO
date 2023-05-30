@@ -13,8 +13,6 @@ echo.
 
 :start
 
-goto:copyStart
-
 REM Create "oiio" directory if it doesn't exist and navigate into it
 if not exist %INSTALL_NAME% goto:start
 
