@@ -1,2 +1,5 @@
 oiio_install_x64-win/
 **/__pycache__/
+*.pyc
+*.tar.gz
+*.zip

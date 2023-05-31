@@ -48,17 +48,6 @@ if %errorlevel% neq 0 (
 	goto:error
 ) 
 
-echo.
-echo DONE INSTALL %INSTALL_NAME%
-pause
-exit /b
-
-:error
-set /p "answer=Try again[Y/N]? "
-if /i "%answer%" equ "N" exit /b
-if /i "%answer%" equ "Y" goto:deleteStart
-goto:error
-
 
 :copyStart
 
@@ -87,12 +76,33 @@ if exist "%fromFolder%tools\Qt6\" (
 )
 if exist "%fromFolder%tools\python3\" (
 	robocopy %fromFolder%tools\python3\ %copyFolder%\bin\python\ /E
+	set python="%copyFolder%\bin\python\python.exe"
+) else (
+	set python="0"
 )
 if exist "%fromFolder%lib\python3.10\site-packages\OpenImageIO\" (
 	robocopy %fromFolder%lib\python3.10\site-packages\OpenImageIO\ %copyFolder%\bin\python\Lib\site-packages\oiio\ /E
 	ren %copyFolder%\bin\python\Lib\site-packages\oiio\OpenImageIO.cp310-win_amd64.pyd OpenImageIO.pyd
 )
 
-if exist "OpenImageIO.bat" robocopy %ROOTDIR% %copyFolder%\ OpenImageIO.bat
+if "%python%" neq "0" (
+	rem get numpy
+	%copyFolder%\bin\python\python.exe -m ensurepip --upgrade
+	%copyFolder%\bin\python\python.exe -m pip install numpy
+)
 
+
+
+cd %copyFolder%\
+curl -o OpenImageIO.bat https://raw.githubusercontent.com/pitvfx/OpenImageIO/master/OpenImageIO.bat
+
+echo.
+echo DONE INSTALL %INSTALL_NAME%
 pause
+exit /b
+
+:error
+set /p "answer=Try again[Y/N]? "
+if /i "%answer%" equ "N" exit /b
+if /i "%answer%" equ "Y" goto:deleteStart
+goto:error
