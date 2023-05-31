@@ -9,7 +9,7 @@ Prebuilt OpenImageIO for standalone command line and python tools. __Not made fo
 If you want the precomplied x64 Windows version, get the latest [release](https://github.com/pitvfx/OpenImageIO/releases/tag/v1.0.0).
 Unzip it and your done.
 
-If just want the install bat to build and install yourself:
+If you want the install bat to build and install yourself:
 ````
 curl -o oiio_install_x64-win.bat https://raw.githubusercontent.com/pitvfx/OpenImageIO/master/oiio_install_x64-win.bat
 ````
