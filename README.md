@@ -13,7 +13,7 @@ If you want the install bat to build and install yourself:
 ````
 curl -o oiio_install_x64-win.bat https://raw.githubusercontent.com/pitvfx/OpenImageIO/master/oiio_install_x64-win.bat
 ````
-run the oiio_install_x64-win.bat once everything is done, you should have a oiio_install_x64-win and a OpenImageIO folder. The OpenImageIO folder is the actual root directory, you can copy it to your system and work with it. The oiio_install_x64-win folder you can either keep, archive or delete it.
+Run the oiio_install_x64-win.bat and once everything is done, you should have a oiio_install_x64-win and a OpenImageIO folder. The OpenImageIO folder is the actual root directory, you can copy it to your system and work with it. The oiio_install_x64-win folder you can either keep, archive or delete it.
 
 ## usage ##
 
