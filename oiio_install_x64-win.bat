@@ -14,7 +14,7 @@ echo.
 :start
 
 REM Create "oiio" directory if it doesn't exist and navigate into it
-if not exist %INSTALL_NAME% goto:start
+if not exist %INSTALL_NAME% goto:installStart
 
 :loopStart
 echo Directory %INSTALL_NAME% exists. Proceeding will delete it.
