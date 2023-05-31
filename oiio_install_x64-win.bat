@@ -63,32 +63,33 @@ mkdir %copyFolder%\bin\
 set fromFolder=%INSTALL_NAME%\installed\x64-windows\
 
 if exist "%fromFolder%tools\openimageio\" (
-	robocopy %fromFolder%tools\openimageio\ %copyFolder%\ /E
+	robocopy %fromFolder%tools\openimageio\ %copyFolder%\ /E /NFL /NDL /NJH
 	)
 if exist "%fromFolder%bin\" (
-	robocopy %fromFolder%bin\ %copyFolder%\bin\ /E /xf *.pdb
+	robocopy %fromFolder%bin\ %copyFolder%\bin\ /E /xf *.pdb /NFL /NDL /NJH
 	)
 if exist "%fromFolder%Qt6\" (	
-	robocopy %fromFolder%Qt6\ %copyFolder%\Qt6\ /E
+	robocopy %fromFolder%Qt6\ %copyFolder%\Qt6\ /E /NFL /NDL /NJH
 	)
 if exist "%fromFolder%tools\Qt6\" (
-	robocopy %fromFolder%tools\Qt6\ %copyFolder%\Qt6\ /E /xd debug /xf *.pdb
+	robocopy %fromFolder%tools\Qt6\ %copyFolder%\Qt6\ /E /xd debug /xf *.pdb /NFL /NDL /NJH
 )
 if exist "%fromFolder%tools\python3\" (
-	robocopy %fromFolder%tools\python3\ %copyFolder%\bin\python\ /E
+	robocopy %fromFolder%tools\python3\ %copyFolder%\bin\python\ /E /NFL /NDL /NJH
 	set python="%copyFolder%\bin\python\python.exe"
 ) else (
 	set python="0"
 )
 if exist "%fromFolder%lib\python3.10\site-packages\OpenImageIO\" (
-	robocopy %fromFolder%lib\python3.10\site-packages\OpenImageIO\ %copyFolder%\bin\python\Lib\site-packages\oiio\ /E
+	robocopy %fromFolder%lib\python3.10\site-packages\OpenImageIO\ %copyFolder%\bin\python\Lib\site-packages\oiio\ /E /NFL /NDL /NJH
 	ren %copyFolder%\bin\python\Lib\site-packages\oiio\OpenImageIO.cp310-win_amd64.pyd OpenImageIO.pyd
 )
 
 if "%python%" neq "0" (
 	rem get numpy
-	%copyFolder%\bin\python\python.exe -m ensurepip --upgrade
-	%copyFolder%\bin\python\python.exe -m pip install numpy
+	%copyFolder%\bin\python\python.exe -Wignore -m ensurepip
+	%copyFolder%\bin\python\python.exe -Wignore -m pip install -U pip --no-warn-script-location
+	%copyFolder%\bin\python\python.exe -Wignore -m pip install numpy --no-warn-script-location
 )
 
 
